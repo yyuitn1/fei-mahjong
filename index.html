@@ -96,7 +96,7 @@ body{background:radial-gradient(circle at 15% 0%,#214941 0,transparent 45%),line
 .deal-track{height:8px;background:#052d26;border-radius:9px;overflow:hidden;margin:15px 0}.deal-fill{height:100%;width:0;background:#e6c579;transition:width .1s linear}
 .deal-skip{margin-top:10px;padding:10px 24px;border-radius:10px;border:0;background:#e8c77f;color:#123c32;font-size:17px;font-weight:bold}
 @media(prefers-reduced-motion:reduce){.deal-tile{animation:none}.deal-fill{transition:none}}
-</style></head><body><div id="dealAnimation" role="dialog" aria-modal="true" aria-label="開局抓牌動畫"><div class="deal-panel"><h2>🀄 洗牌・抓牌</h2><div id="dealSeat" class="deal-progress">準備抓牌…</div><div class="deal-tile-row" id="dealTiles"></div><div class="deal-track"><div class="deal-fill" id="dealFill"></div></div><div id="dealCounter" class="deal-progress">0 / 52 張</div><button class="deal-skip" id="dealSkip" type="button">跳過動畫 ▶</button></div></div><main class="app"><header class="top"><h1><span class="brand-icon">飛</span><span>飛雀麻將<small>FOUR PLAYER · FEI MAHJONG</small></span></h1><div><span class="chip" id="status">準備中</span> <label class="volume-control" for="volumeSlider">🔉 音量 <input id="volumeSlider" type="range" min="0" max="100" value="70" step="1" aria-label="遊戲音量"><output id="volumeValue">70%</output></label> <button class="btn secondary" id="soundButton" type="button" aria-pressed="true">🔊 音效開</button> <button class="btn secondary" id="newGameButton" type="button">重新開局</button></div></header><div id="previewNotice" style="padding:12px;margin:10px 0;background:#704d18;color:white;border-radius:9px;font-weight:700">目前是檔案預覽模式，遊戲程式尚未啟動。請將遊戲部署到網頁空間，使用 Safari 開啟正式 HTTPS 網址。</div><div id="errorBar" hidden role="alert" style="margin:8px 0;padding:10px;background:#8a2833;border-radius:9px"></div><div class="scoreline" id="scores"></div><section class="table"><div class="opponent"><div class="name" id="name2">AI 對家</div><div class="backs" id="back2"></div><div class="melds" id="meld2"></div></div><div class="middle"><div class="side"><div class="name" id="name3">AI 上家</div><div class="vertical" id="back3"></div><div class="melds" id="meld3"></div></div><div class="board-center"><div class="center-emblem"><div class="emblem-top">飛雀麻將</div><div class="emblem-mark">飛</div><div class="emblem-sub" id="wallLeft">牌牆準備中</div></div><div class="river" id="river"></div></div><div class="side"><div class="name" id="name1">AI 下家</div><div class="vertical" id="back1"></div><div class="melds" id="meld1"></div></div></div><div class="bottom"><div class="hand-title"><span>YOUR HAND</span><span id="handCount">14 張手牌</span></div><div class="name" id="name0" style="text-align:center">👤 你（東家）</div><div class="melds" id="meld0"></div><div class="hand" id="hand"></div></div></section><div class="control-panel"><div class="action-label">操作選單 <span>選擇手牌即可打出</span></div><div class="controls" id="controls"></div></div><div class="hint" id="hint"></div><details class="rules" style="margin-top:12px"><summary>🎙️ 四家固定角色配音／試聽（下家女聲加強）</summary><p id="voiceAvailability">正在讀取手機可用語音…</p><div id="voiceSettings" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px"></div><p style="font-size:12px;opacity:.8">預設播放隨遊戲附上的四組固定合成配音，不依賴手機語音。下家音檔經過升調及音色調整；這些是原創合成聲線，不是任何真人的聲音。音質屬實驗版；選單中的系統語音僅用於未預錄詞句的備援。</p></details><div class="log-title">牌局紀錄 <span>LIVE MATCH</span></div><div class="log" id="log" aria-live="polite"></div><details class="rules"><summary>遊戲規則與 V6.5 輪莊與音量控制、東風即時籌碼、5000籌碼與語音動作</summary>四人13張，含萬筒索、字牌、4張飛牌與12張花牌；飛可在手牌中代替任意普通牌。手上同時有4張飛立即掃台。不能假槓、不能把飛當花打掉；只能吃上家（本遊戲為你的左邊玩家，座位標示為AI上家）。可碰任一家，可用真牌明槓／暗槓／加槓。普通胡牌4面子＋1將眼，無最低番數。包含12張花牌（春夏秋冬、梅蘭菊竹、貓鼠雞蟲），摸花自動補花；每張花1番，集齊任一組四張立即掃台；未納入特殊胡牌（七對、十三么等），避免對未確認桌規擅自設定。飛牌不能參與副露，暫不支援贖飛。籌碼制：四家起始各5000籌碼，莊家胡牌、自摸或掃台可連莊；非莊家獲勝或流局則下家接莊。平胡時莊家若輸付600籌碼、閒家若輸各付300籌碼；莊家胡牌則其他三家各付600籌碼。每張花牌額外加100籌碼（每位付款者）；四飛或任一組四花掃台時其他三家交出全部剩餘籌碼。東風特殊籌碼：任何玩家打東風，其他三家各付該玩家100；碰東風，出牌者付碰牌者200、其餘兩家各付300；槓東風，其他三家各付槓牌者700。籌碼即時結算，所有玩家規則相同。這是遊戲籌碼，非現金。AI為基本牌效率策略，非專業強度。</details></main><div id="overlay" class="overlay"><div class="modal"><h2 id="modalTitle"></h2><div id="modalText"></div><div class="actions" id="modalActions"></div></div></div><script>
+</style></head><body><div id="dealAnimation" role="dialog" aria-modal="true" aria-label="開局抓牌動畫"><div class="deal-panel"><h2>🀄 洗牌・抓牌</h2><div id="dealSeat" class="deal-progress">準備抓牌…</div><div class="deal-tile-row" id="dealTiles"></div><div class="deal-track"><div class="deal-fill" id="dealFill"></div></div><div id="dealCounter" class="deal-progress">0 / 52 張</div><button class="deal-skip" id="dealSkip" type="button">跳過動畫 ▶</button></div></div><main class="app"><header class="top"><h1><span class="brand-icon">飛</span><span>飛雀麻將<small>FOUR PLAYER · FEI MAHJONG</small></span></h1><div><span class="chip" id="status">準備中</span> <label class="volume-control" for="volumeSlider">🔉 音量 <input id="volumeSlider" type="range" min="0" max="100" value="70" step="1" aria-label="遊戲音量"><output id="volumeValue">70%</output></label> <button class="btn secondary" id="soundButton" type="button" aria-pressed="true">🔊 音效開</button> <button class="btn secondary" id="newGameButton" type="button">重新開局</button></div></header><div id="previewNotice" style="padding:12px;margin:10px 0;background:#704d18;color:white;border-radius:9px;font-weight:700">目前是檔案預覽模式，遊戲程式尚未啟動。請將遊戲部署到網頁空間，使用 Safari 開啟正式 HTTPS 網址。</div><div id="errorBar" hidden role="alert" style="margin:8px 0;padding:10px;background:#8a2833;border-radius:9px"></div><div class="scoreline" id="scores"></div><section class="table"><div class="opponent"><div class="name" id="name2">AI 對家</div><div class="backs" id="back2"></div><div class="melds" id="meld2"></div></div><div class="middle"><div class="side"><div class="name" id="name3">AI 上家</div><div class="vertical" id="back3"></div><div class="melds" id="meld3"></div></div><div class="board-center"><div class="center-emblem"><div class="emblem-top">飛雀麻將</div><div class="emblem-mark">飛</div><div class="emblem-sub" id="wallLeft">牌牆準備中</div></div><div class="river" id="river"></div></div><div class="side"><div class="name" id="name1">AI 下家</div><div class="vertical" id="back1"></div><div class="melds" id="meld1"></div></div></div><div class="bottom"><div class="hand-title"><span>YOUR HAND</span><span id="handCount">14 張手牌</span></div><div class="name" id="name0" style="text-align:center">👤 你（東家）</div><div class="melds" id="meld0"></div><div class="hand" id="hand"></div></div></section><div class="control-panel"><div class="action-label">操作選單 <span>選擇手牌即可打出</span></div><div class="controls" id="controls"></div></div><div class="hint" id="hint"></div><details class="rules" style="margin-top:12px"><summary>🎙️ 四家固定角色配音／試聽（下家女聲加強）</summary><p id="voiceAvailability">正在讀取手機可用語音…</p><div id="voiceSettings" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px"></div><p style="font-size:12px;opacity:.8">預設播放隨遊戲附上的四組固定合成配音，不依賴手機語音。下家音檔經過升調及音色調整；這些是原創合成聲線，不是任何真人的聲音。音質屬實驗版；選單中的系統語音僅用於未預錄詞句的備援。</p></details><div class="log-title">牌局紀錄 <span>LIVE MATCH</span></div><div class="log" id="log" aria-live="polite"></div><details class="rules"><summary>遊戲規則與 V6.8 輪莊與音量控制、東風即時籌碼、5000籌碼與語音動作</summary>四人13張，含萬筒索、字牌、4張飛牌與12張花牌；飛可在手牌中代替任意普通牌。手上同時有4張飛立即掃台。不能假槓、不能把飛當花打掉；只能吃上家（本遊戲為你的左邊玩家，座位標示為AI上家）。可碰任一家，可用真牌明槓／暗槓／加槓；明槓及加槓由其他三家各付700，暗槓由其他三家各付1000。普通胡牌4面子＋1將眼，無最低番數。包含12張花牌（春夏秋冬、梅蘭菊竹、貓鼠雞蟲），摸花自動補花；每張花1番，集齊任一組四張立即掃台；支援十三么、大四喜、小四喜、大三元、小三元（飛牌可百搭）；尚未納入七對。飛牌不能參與副露，暫不支援贖飛。籌碼制：四家起始各5000籌碼，莊家胡牌、自摸或掃台可連莊；非莊家獲勝或流局則下家接莊。平胡時莊家若輸付600籌碼、閒家若輸各付300籌碼；莊家胡牌則其他三家各付600籌碼。每張花牌額外加100籌碼（每位付款者）；四飛或任一組四花掃台時其他三家交出全部剩餘籌碼。東風特殊籌碼：任何玩家打東風，其他三家各付該玩家100；碰東風，出牌者付碰牌者200、其餘兩家各付300；槓東風依明槓或暗槓計費，不重複收費。籌碼即時結算，所有玩家規則相同。這是遊戲籌碼，非現金。AI為基本牌效率策略，非專業強度。</details></main><div id="overlay" class="overlay"><div class="modal"><h2 id="modalTitle"></h2><div id="modalText"></div><div class="actions" id="modalActions"></div></div></div><script>
 'use strict';
 const types=[];for(let s of ['m','p','s'])for(let n=1;n<=9;n++)types.push(s+n);for(let z of ['E','S','W','N','R','G','B'])types.push(z);types.push('F');
 const FLOWERS=['春','夏','秋','冬','梅','蘭','菊','竹','貓','鼠','雞','蟲'];
@@ -254,6 +254,51 @@ let ok=false;
 let use=Math.min(3,c[first]);if(3-use<=fly){c[first]-=use;ok=canGroup(c,need-1,fly-(3-use),memo);c[first]+=use}
 if(!ok&&first.length===2){let suit=first[0],n=+first[1];for(let start=Math.max(1,n-2);start<=Math.min(7,n);start++){let seq=[suit+start,suit+(start+1),suit+(start+2)];let missing=0,used=[];for(let t of seq){if(c[t]>0){c[t]--;used.push(t)}else missing++}if(missing<=fly&&canGroup(c,need-1,fly-missing,memo))ok=true;for(let t of used)c[t]++;if(ok)break}}
 memo.set(key,ok);return ok}
+// 特殊牌型：飛牌可補缺；副露必須符合該牌型的刻子要求。
+const ORPHANS=['m1','m9','p1','p9','s1','s9','E','S','W','N','R','G','B'];
+function isThirteenOrphans(hand,melds=[]){
+ if(melds.length||hand.length!==14)return false;
+ const c=counts(hand),fly=c.F||0;
+ if(Object.keys(c).some(t=>t!=='F'&&!ORPHANS.includes(t)))return false;
+ const missing=ORPHANS.reduce((n,t)=>n+(c[t]?0:1),0);
+ // 13 種各一張，加其中一種對子；百搭不能創造第14種。
+ return missing<=fly && ORPHANS.some(t=>fly-missing+(c[t]||0)-1>=1);
+}
+function honorPattern(hand,melds,targets,pairOptions){
+ const c=counts(hand),fly=c.F||0;delete c.F;
+ const usedExposed=new Set();
+ for(const t of targets){
+  const match=melds.filter(m=>m.tiles[0]===t&&m.tiles.every(x=>x===t));
+  if(match.length>1)return false;
+  if(match.length)usedExposed.add(melds.indexOf(match[0]));
+ }
+ const concealed=targets.filter(t=>!melds.some(m=>m.tiles[0]===t&&m.tiles.every(x=>x===t)));
+ // 已副露的目標字牌不能以順子充當刻子。
+ if(melds.some(m=>m.tiles.some(x=>targets.includes(x))&&!m.tiles.every(x=>x===m.tiles[0])))return false;
+ const remainingGroups=4-melds.length-concealed.length;
+ if(remainingGroups<0)return false;
+ function attempt(k,f){
+  if(k<concealed.length){let t=concealed[k],have=c[t]||0;
+   for(let take=Math.min(3,have);take>=0;take--){let cost=3-take;if(cost>f)continue;c[t]-=take;if(attempt(k+1,f-cost)){c[t]+=take;return true}c[t]+=take}return false;
+  }
+  for(const pair of pairOptions){let have=c[pair]||0;
+   for(let take=Math.min(2,have);take>=0;take--){let cost=2-take;if(cost>f)continue;c[pair]-=take;
+    if(canGroup(c,remainingGroups,f-cost,new Map())){c[pair]+=take;return true}c[pair]+=take}
+  }
+  return false;
+ }
+ return attempt(0,fly);
+}
+function specialWinType(hand,melds=[]){
+ if(isThirteenOrphans(hand,melds))return '十三么';
+ const winds=['E','S','W','N'],dragons=['R','G','B'];
+ if(honorPattern(hand,melds,winds,types.filter(t=>t!=='F')))return '大四喜';
+ for(const pair of winds)if(honorPattern(hand,melds,winds.filter(t=>t!==pair),[pair]))return '小四喜';
+ if(honorPattern(hand,melds,dragons,types.filter(t=>t!=='F')))return '大三元';
+ for(const pair of dragons)if(honorPattern(hand,melds,dragons.filter(t=>t!==pair),[pair]))return '小三元';
+ return null;
+}
+function playerWin(hand,melds=[]){return !!specialWinType(hand,melds)||isWin(hand,melds.length)}
 function isWin(hand,meldCount=0){let tiles=hand.filter(t=>t!=='F'),f=hand.length-tiles.length,need=4-meldCount;if(need<0||tiles.length+f!==need*3+2)return false;let c=counts(tiles);for(let t of types.filter(x=>x!=='F')){let use=Math.min(2,c[t]||0);if(2-use>f)continue;c[t]=(c[t]||0)-use;if(canGroup(c,need,f-(2-use),new Map())){c[t]+=use;return true}c[t]+=use}if(f>=2&&canGroup(c,need,f-2,new Map()))return true;return false}
 function waits(hand,meldCount=0,known=[]){return types.filter(t=>counts([...hand,...known])[t]<4&&isWin([...hand,t],meldCount))}
 function shuffle(arr){for(let i=arr.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]]}return arr}
@@ -264,9 +309,18 @@ function showError(msg){const e=$('errorBar');if(e){e.hidden=false;e.textContent
 function log(msg){G.logs.unshift(msg);G.logs=G.logs.slice(0,80)}
 function remove(hand,t,n){for(let i=0;i<n;i++){let j=hand.indexOf(t);if(j<0)throw Error('Missing '+t);hand.splice(j,1)}}
 function dealOne(p,deck){while(deck.length){let t=deck.pop();if(FLOWERS.includes(t)){p.flowers.push(t);continue}p.hand.push(t);return} }
-function sweepReason(p){if(p.hand.filter(t=>t==='F').length===4)return '四飛';for(let i=0;i<3;i++)if(FLOWER_SETS[i].every(t=>p.flowers.includes(t)))return ['四季花','四君子','四動物花'][i];return null}
+function sweepReason(p){if(p.hand.filter(t=>t==='F').length===4)return '四飛';if(eightFlowers(p))return '八花';for(let i=0;i<3;i++)if(FLOWER_SETS[i].every(t=>p.flowers.includes(t)))return ['四季花','四君子','四動物花'][i];return null}
 function drawReplacement(i){let p=G.players[i],found=[];while(G.deck.length){let t=G.deck.pop();if(FLOWERS.includes(t)){p.flowers.push(t);found.push(t);log(`${p.name} 補花 ${t}`);if(sweepReason(p))return {sweep:true,found}}else{p.hand.push(t);p.hand.sort((a,b)=>sortKey(a)-sortKey(b));return {tile:t,found}}}return {empty:true,found}}
-function flowerFan(p){return p.flowers.length}
+function flowerFan(p,seat=0){
+ const seatIndex=((seat-G.dealer+4)%4);
+ const season=['春','夏','秋','冬'],plant=['梅','蘭','菊','竹'];
+ return p.flowers.reduce((n,t)=>{
+   if(['貓','鼠','雞','蟲','冬','竹'].includes(t))return n+1;
+   return n+(t===season[seatIndex]||t===plant[seatIndex]?1:0);
+ },0);
+}
+function eightFlowers(p){return p.flowers.length>=8}
+
 let currentDealer=0;
 function fresh(){let deck=shuffle([...types.flatMap(t=>Array(4).fill(t)),...FLOWERS]);let players=Array.from({length:4},(_,i)=>({hand:[],flowers:[],melds:[],river:[],score:5000,name:['你','AI 下家','AI 對家','AI 上家'][i]}));for(let i=0;i<13;i++)for(let p of players)dealOne(p,deck);dealOne(players[currentDealer],deck);for(let p of players)p.hand.sort((a,b)=>sortKey(a)-sortKey(b));return{deck,players,dealer:currentDealer,turn:currentDealer,phase:'discard',last:null,logs:[],ended:false,actions:[],pendingKong:null}}
 let dealingToken=0,dealingTimer=null,dealingNow=false;
@@ -285,14 +339,14 @@ function playDealing(done){
  }
  $('dealSkip').onclick=finish;step();
 }
-function newGame(){playSound('tap');stopDealing();const notice=$('previewNotice');if(notice)notice.hidden=true;const e=$('errorBar');if(e)e.hidden=true;clearTimeout(aiTimer);let oldScores=G?G.players.map(p=>p.score):null;G=fresh();if(oldScores)G.players.forEach((p,i)=>p.score=oldScores[i]);modalBlocked=false;closeModal();log('新的一局！'+G.players[G.dealer].name+'坐莊，先出牌。');render();playDealing(()=>{for(let i=0;i<4;i++)if(sweepReason(G.players[i])){win(i,'sweep');return}if(G.dealer===0&&isWin(G.players[0].hand))log('你起手已經胡牌！按「胡牌」。');render();if(G.turn!==0)queueAI()})}
+function newGame(){playSound('tap');stopDealing();const notice=$('previewNotice');if(notice)notice.hidden=true;const e=$('errorBar');if(e)e.hidden=true;clearTimeout(aiTimer);let oldScores=G?G.players.map(p=>p.score):null;G=fresh();if(oldScores)G.players.forEach((p,i)=>p.score=oldScores[i]);modalBlocked=false;closeModal();log('新的一局！'+G.players[G.dealer].name+'坐莊，先出牌。');render();playDealing(()=>{for(let i=0;i<4;i++)if(sweepReason(G.players[i])){win(i,'sweep');return}if(G.dealer===0&&playerWin(G.players[0].hand,G.players[0].melds))log('你起手已經胡牌！按「胡牌」。');render();if(G.turn!==0)queueAI()})}
 function setNextDealer(winner){const old=G.dealer;currentDealer=winner===old?old:(old+1)%4;log(currentDealer===old?'莊家連莊！':'換莊：'+G.players[currentDealer].name+'接莊。')}
 function modal(title,html,actions){modalBlocked=true;$('modalTitle').textContent=title;$('modalText').innerHTML=html;$('modalActions').innerHTML='';for(let a of actions){let b=document.createElement('button');b.className='btn '+(a.secondary?'secondary':'');b.textContent=a.label;b.onclick=a.action;$('modalActions').appendChild(b)}$('overlay').classList.add('visible')}
 function closeModal(){$('overlay').classList.remove('visible');modalBlocked=false}
 function canKong(p){let c=counts(p.hand);let a=[];for(let t of types.filter(t=>t!=='F'))if(c[t]===4)a.push({t,type:'concealed'});for(let m of p.melds)if(m.type==='pong'&&c[m.tiles[0]]>=1)a.push({t:m.tiles[0],type:'added'});return a}
 function exposedCount(p){return p.melds.length}
-function choices(){let p=G.players[0],a=[];if(G.ended||dealingNow)return a;if(G.phase==='discard'){if(isWin(p.hand,exposedCount(p)))a.push({label:'🀄 胡牌',fn:()=>win(0,'self')});if(p.hand.filter(t=>t==='F').length===4)a.push({label:'✨ 四飛掃台',fn:()=>win(0,'sweep')});let ks=canKong(p);if(ks.length)a.push({label:'槓牌',fn:()=>chooseKong(ks)});a.push({label:'提示聽牌',fn:showHints})}if(G.phase==='draw')a.push({label:'摸牌',fn:()=>draw(0)});return a}
-function render(){if(!G)return;for(let i=0;i<4;i++){let p=G.players[i];let back=$('back'+i);if(back)back.innerHTML=Array.from({length:p.hand.length},()=>'<span class="back"></span>').join('');$('name'+i).textContent=p.name+(G.dealer===i?' 👑莊家':'')+(G.turn===i&&!G.ended?' ⬅':'');$('meld'+i).innerHTML=p.melds.map(m=>'<span class="meld">'+m.tiles.map(t=>face(t,true)).join('')+'</span>').join('')+(p.flowers.length?'<div class="flower-row">🌸 花 '+p.flowers.length+'張（'+flowerFan(p)+'番）<div class="tiles">'+p.flowers.map(t=>face(t,true)).join('')+'</div></div>':'')}
+function choices(){let p=G.players[0],a=[];if(G.ended||dealingNow)return a;if(G.phase==='discard'){if(playerWin(p.hand,p.melds))a.push({label:'🀄 胡牌',fn:()=>win(0,'self')});if(p.hand.filter(t=>t==='F').length===4)a.push({label:'✨ 四飛掃台',fn:()=>win(0,'sweep')});let ks=canKong(p);if(ks.length)a.push({label:'槓牌',fn:()=>chooseKong(ks)});a.push({label:'提示聽牌',fn:showHints})}if(G.phase==='draw')a.push({label:'摸牌',fn:()=>draw(0)});return a}
+function render(){if(!G)return;for(let i=0;i<4;i++){let p=G.players[i];let back=$('back'+i);if(back)back.innerHTML=Array.from({length:p.hand.length},()=>'<span class="back"></span>').join('');$('name'+i).textContent=p.name+(G.dealer===i?' 👑莊家':'')+(G.turn===i&&!G.ended?' ⬅':'');$('meld'+i).innerHTML=p.melds.map(m=>'<span class="meld">'+m.tiles.map(t=>face(t,true)).join('')+'</span>').join('')+(p.flowers.length?'<div class="flower-row">🌸 花 '+p.flowers.length+'張（'+flowerFan(p,i)+'番）<div class="tiles">'+p.flowers.map(t=>face(t,true)).join('')+'</div></div>':'')}
 let h=G.players[0].hand;$('hand').innerHTML=h.map((t,i)=>`<button class="tile ${cls(t)}" ${G.phase!=='discard'||G.ended||t==='F'?'disabled':''} data-tile-index="${i}" type="button">${tileInner(t)}</button>`).join('');$('river').innerHTML=G.players.map((p,i)=>`<div class="pile"><div class="heading">${p.name} · 已打${p.river.length}</div><div class="tiles">${p.river.map(t=>face(t,true)).join('')}</div></div>`).join('');$('controls').innerHTML='';for(let a of choices()){let b=document.createElement('button');b.className='btn';b.textContent=a.label;b.onclick=a.fn;$('controls').appendChild(b)}$('wallLeft').textContent='牌牆剩餘 '+G.deck.length+' 張';$('handCount').textContent=h.length+' 張手牌 · '+h.filter(t=>t==='F').length+' 飛';$('status').textContent=G.ended?'本局結束':G.phase==='discard'&&G.turn===0?'輪到你出牌':G.phase==='draw'&&G.turn===0?'輪到你摸牌':`輪到 ${G.players[G.turn].name}`;$('hint').textContent=G.ended?'按重新開局繼續':G.phase==='discard'&&G.turn===0?'點一下手牌即可打出；飛牌不可打出':G.phase==='draw'&&G.turn===0?'按「摸牌」': 'AI 正在思考…';$('log').innerHTML=G.logs.map(x=>`<div>• ${x}</div>`).join('');$('scores').innerHTML=G.players.map(p=>`<span>${p.name}：${p.score>=0?'':''}${p.score}</span>`).join('')}
 function discardHuman(index){if(dealingNow||G.ended||G.turn!==0||G.phase!=='discard'||modalBlocked)return;let t=G.players[0].hand[index];if(t==='F')return;discard(0,t)}
 // 東風即時籌碼：出東每家付1；碰東由出牌者付2、另兩家各付3；槓東每家付7。
@@ -305,43 +359,103 @@ function eastTransfer(receiver,payers,reason){
 function eastDiscard(seat){eastTransfer(seat,[0,1,2,3].filter(j=>j!==seat).map(j=>[j,100]),'打出東風');}
 function eastPong(seat,from){eastTransfer(seat,[0,1,2,3].filter(j=>j!==seat).map(j=>[j,j===from?200:300]),'碰東風');}
 function eastKong(seat){eastTransfer(seat,[0,1,2,3].filter(j=>j!==seat).map(j=>[j,700]),'槓東風');}
-// 普通牌槓牌：明槓每家付3；暗槓每家付6。東風槓沿用專屬每家7。
-function normalKong(seat,t,concealed){if(t==='E'){eastKong(seat);return;}const amount=concealed?600:300;eastTransfer(seat,[0,1,2,3].filter(j=>j!==seat).map(j=>[j,amount]),concealed?'暗槓 '+label(t):'明槓 '+label(t));}
+// V6.8：所有明槓（含加槓）由其他三家各付700；所有暗槓各付1000。東風槓不重複計費。
+function normalKong(seat,t,concealed){const amount=concealed?1000:700;eastTransfer(seat,[0,1,2,3].filter(j=>j!==seat).map(j=>[j,amount]),concealed?'暗槓 '+label(t):'明槓 '+label(t));}
 function discard(i,t){playSound('discard');speakDiscard(t,i);let p=G.players[i];remove(p.hand,t,1);p.river.push(t);if(t==='E')eastDiscard(i);G.last={from:i,t};G.phase='responses';log(`${p.name} 打出 ${label(t)}`);render();responses(i,t)}
-function responseOptions(i,t){let o=[];for(let j=1;j<=3;j++){let x=(i+j)%4,p=G.players[x];if(isWin([...p.hand,t],p.melds.length))o.push({seat:x,type:'win',priority:3});let c=counts(p.hand);if(c[t]>=3)o.push({seat:x,type:'kong',priority:2});if(c[t]>=2)o.push({seat:x,type:'pong',priority:2});if(j===1&&t.length===2){let n=+t[1],s=t[0];for(let a=n-2;a<=n;a++){if(a<1||a>7)continue;let seq=[s+a,s+(a+1),s+(a+2)],req=seq.filter(v=>v!==t);if(req.every(q=>c[q]>=req.filter(r=>r===q).length))o.push({seat:x,type:'chow',priority:1,req})}}}return o}
+function responseOptions(i,t){let o=[];for(let j=1;j<=3;j++){let x=(i+j)%4,p=G.players[x];if(playerWin([...p.hand,t],p.melds))o.push({seat:x,type:'win',priority:3});let c=counts(p.hand);if(c[t]>=3)o.push({seat:x,type:'kong',priority:2});if(c[t]>=2)o.push({seat:x,type:'pong',priority:2});if(j===1&&t.length===2){let n=+t[1],s=t[0];for(let a=n-2;a<=n;a++){if(a<1||a>7)continue;let seq=[s+a,s+(a+1),s+(a+2)],req=seq.filter(v=>v!==t);if(req.every(q=>c[q]>=req.filter(r=>r===q).length))o.push({seat:x,type:'chow',priority:1,req})}}}return o}
 function responses(i,t){let opts=responseOptions(i,t);let wins=opts.filter(o=>o.type==='win');if(wins.length){let w=wins.sort((a,b)=>(a.seat-i+4)%4-(b.seat-i+4)%4)[0];if(w.seat===0){modal('你可以胡牌！',`${G.players[i].name} 打出 ${label(t)}，你的手牌已經符合胡牌。`,[{label:'胡牌',action:()=>{closeModal();win(0,'discard',i,t)}},{label:'過',secondary:true,action:()=>{closeModal();responsesNoHuman(i,t)}}]);return}win(w.seat,'discard',i,t);return}
 let human=opts.filter(o=>o.seat===0);if(human.length){let actions=[];for(let o of human){if(o.type==='chow')actions.push({label:'吃 '+o.req.map(label).join('、'),action:()=>{closeModal();claim(o,i,t)}});if(o.type==='pong')actions.push({label:'碰',action:()=>{closeModal();claim(o,i,t)}});if(o.type==='kong')actions.push({label:'明槓',action:()=>{closeModal();claim(o,i,t)}})}actions.push({label:'過',secondary:true,action:()=>{closeModal();responsesNoHuman(i,t)}});modal('可吃／碰／槓',`${G.players[i].name} 打出 ${label(t)}。要不要拿這張牌？`,actions);return}responsesNoHuman(i,t)}
 function responsesNoHuman(i,t){let opts=responseOptions(i,t).filter(o=>o.seat!==0&&o.type!=='win');let pong=opts.find(o=>o.type==='pong'&&Math.random()<.30)||opts.find(o=>o.type==='kong'&&Math.random()<.3);let chow=opts.find(o=>o.type==='chow'&&Math.random()<.25);let taken=pong||chow;if(taken){claim(taken,i,t);return}next(i)}
 function claim(o,from,t){playSound(o.type==='kong'?'kong':'claim');speakAction(o.type==='chow'?'吃':o.type==='pong'?'碰':'槓',o.seat);let p=G.players[o.seat],river=G.players[from].river;river.pop();let req=o.type==='chow'?o.req:Array(o.type==='kong'?3:2).fill(t);for(let q of req)remove(p.hand,q,1);p.melds.push({type:o.type,tiles:[...req,t].sort((a,b)=>sortKey(a)-sortKey(b))});if(t==='E'&&o.type==='pong')eastPong(o.seat,from);if(o.type==='kong')normalKong(o.seat,t,false);G.turn=o.seat;G.phase=o.type==='kong'?'draw':'discard';log(`${p.name} ${o.type==='chow'?'吃':o.type==='pong'?'碰':'槓'} ${label(t)}`);render();if(o.type==='kong'){draw(o.seat)}else if(o.seat!==0)queueAI()}
 function next(i){G.turn=(i+1)%4;G.phase='draw';render();if(G.turn!==0)queueAI()}
-function draw(i){if(dealingNow)return;playSound('draw');if(G.ended||G.turn!==i||G.phase!=='draw')return;if(!G.deck.length){endDraw();return}let result=drawReplacement(i),p=G.players[i];if(sweepReason(p)){win(i,'sweep');return}if(result.empty){endDraw();return}let t=result.tile;G.phase='discard';log(`${p.name} 摸牌${i===0?'：'+label(t):''}`);if(i!==0&&isWin(p.hand,p.melds.length)){win(i,'self');return}render();if(i!==0)queueAI()}
+function draw(i){if(dealingNow)return;playSound('draw');if(G.ended||G.turn!==i||G.phase!=='draw')return;if(!G.deck.length){endDraw();return}let result=drawReplacement(i),p=G.players[i];if(sweepReason(p)){win(i,'sweep');return}if(result.empty){endDraw();return}let t=result.tile;G.phase='discard';log(`${p.name} 摸牌${i===0?'：'+label(t):''}`);if(i!==0&&playerWin(p.hand,p.melds)){win(i,'self');return}render();if(i!==0)queueAI()}
 let aiTimer=null;function queueAI(){clearTimeout(aiTimer);aiTimer=setTimeout(aiStep,420)}
-function aiStep(){if(!G||G.ended||modalBlocked||G.turn===0)return;let i=G.turn,p=G.players[i];if(G.phase==='draw'){draw(i);return}if(G.phase!=='discard')return;if(isWin(p.hand,p.melds.length)){win(i,'self');return}let ks=canKong(p);if(ks.length&&Math.random()<.35){doKong(i,ks[0]);return}let choices=p.hand.filter(t=>t!=='F');let scored=choices.map(t=>({t,score:handValue(p.hand.filter((x,k)=>k!==p.hand.indexOf(t)),p.melds.length)})).sort((a,b)=>b.score-a.score||Math.random()-.5);discard(i,scored[0].t)}
+function aiStep(){if(!G||G.ended||modalBlocked||G.turn===0)return;let i=G.turn,p=G.players[i];if(G.phase==='draw'){draw(i);return}if(G.phase!=='discard')return;if(playerWin(p.hand,p.melds)){win(i,'self');return}let ks=canKong(p);if(ks.length&&Math.random()<.35){doKong(i,ks[0]);return}let choices=p.hand.filter(t=>t!=='F');let scored=choices.map(t=>({t,score:handValue(p.hand.filter((x,k)=>k!==p.hand.indexOf(t)),p.melds.length)})).sort((a,b)=>b.score-a.score||Math.random()-.5);discard(i,scored[0].t)}
 function handValue(h,m){let c=counts(h),score=0;for(let t of h){if(t==='F'){score+=8;continue}let n=c[t];score+=n>=2?3:0; if(t.length===2){let suit=t[0],v=+t[1];for(let d of [-2,-1,1,2]){let q=suit+(v+d);if(c[q])score+=Math.abs(d)===1?1.6:.65}}}return score+Math.random()*.8}
 function chooseKong(ks){modal('選擇槓牌','只能使用真牌槓，飛牌不可假槓。',[...ks.map(k=>({label:`${k.type==='concealed'?'暗槓':'加槓'} ${label(k.t)}`,action:()=>{closeModal();doKong(0,k)}})),{label:'取消',secondary:true,action:closeModal}])}
 function doKong(i,k){playSound('kong');speakAction('槓',i);let p=G.players[i];if(k.type==='concealed'){remove(p.hand,k.t,4);p.melds.push({type:'kong',tiles:Array(4).fill(k.t)})}else{remove(p.hand,k.t,1);let m=p.melds.find(m=>m.type==='pong'&&m.tiles[0]===k.t);m.type='kong';m.tiles.push(k.t)}normalKong(i,k.t,k.type==='concealed');log(`${p.name} ${k.type==='concealed'?'暗槓':'加槓'} ${label(k.t)}`);G.phase='draw';render();draw(i)}
-function showHints(){let p=G.players[0];if(isWin(p.hand,p.melds.length)){modal('已經胡牌','這副牌已可胡牌，請直接按「胡牌」！',[{label:'知道了',action:closeModal}]);return}let seen=G.players.flatMap(x=>[...x.river,...x.melds.flatMap(m=>m.tiles)]);let cand=[...new Set(p.hand.filter(x=>x!=='F'))].map(t=>{let copy=[...p.hand];copy.splice(copy.indexOf(t),1);let w=waits(copy,p.melds.length,seen),left=w.reduce((n,x)=>n+Math.max(0,4-counts([...copy,...seen])[x]),0);return{t,w,left}}).sort((a,b)=>b.left-a.left);let best=cand.filter(x=>x.left>0).slice(0,5);modal('聽牌提示',best.length?best.map(x=>`<p>打 <b>${label(x.t)}</b>：聽 ${x.w.map(label).join('、')}（可見牌推估剩 ${x.left} 張）</p>`).join(''):'目前沒有打一張就能直接聽牌的選項，先整理搭子。',[{label:'關閉',action:closeModal}])}
+function showHints(){let p=G.players[0];if(playerWin(p.hand,p.melds)){modal('已經胡牌','這副牌已可胡牌，請直接按「胡牌」！',[{label:'知道了',action:closeModal}]);return}let seen=G.players.flatMap(x=>[...x.river,...x.melds.flatMap(m=>m.tiles)]);let cand=[...new Set(p.hand.filter(x=>x!=='F'))].map(t=>{let copy=[...p.hand];copy.splice(copy.indexOf(t),1);let w=waits(copy,p.melds.length,seen),left=w.reduce((n,x)=>n+Math.max(0,4-counts([...copy,...seen])[x]),0);return{t,w,left}}).sort((a,b)=>b.left-a.left);let best=cand.filter(x=>x.left>0).slice(0,5);modal('聽牌提示',best.length?best.map(x=>`<p>打 <b>${label(x.t)}</b>：聽 ${x.w.map(label).join('、')}（可見牌推估剩 ${x.left} 張）</p>`).join(''):'目前沒有打一張就能直接聽牌的選項，先整理搭子。',[{label:'關閉',action:closeModal}])}
+// V6.7 番數判定：飛牌可作百搭；番數以每番100籌碼加付。
+function patternInfo(hand,melds,seat){
+ const all=[...hand,...melds.flatMap(m=>m.tiles)],natural=all.filter(t=>t!=='F');
+ const c=counts(hand),fly=c.F||0,labels=[],sweep=[];
+ const special=specialWinType(hand,melds);
+ if(special==='大四喜'||special==='小四喜'||special==='大三元')sweep.push(special);
+ if(special==='小三元')labels.push(['小三元',4]);
+ if(natural.length&&natural.every(t=>['E','S','W','N','R','G','B'].includes(t)))sweep.push('字一色');
+ const winds=['E','S','W','N'],dragons=['R','G','B'];
+ // 風刻按莊家起算東南西北的座位順位。
+ const seatWind=winds[(seat-G.dealer+4)%4];
+ function trip(t){return melds.some(m=>m.tiles.length>=3&&m.tiles.every(x=>x===t))||((c[t]||0)+fly>=3)}
+ if(trip(seatWind))labels.push(['本位風刻',1]);
+ for(const t of dragons)if(trip(t))labels.push([label(t)+'刻',1]);
+ const suitSet=new Set(natural.filter(t=>t.length===2).map(t=>t[0]));
+ const pure=natural.length>0&&natural.every(t=>t.length===2)&&suitSet.size===1;
+ // 「清一色」限同一花色；與碰碰胡合併採5番，不重複疊加。
+ const allTrip=melds.every(m=>m.type!=='chow')&&canAllTriplets(hand,melds.length);
+ if(pure&&allTrip)labels.push(['清一色碰碰胡',5]);
+ else {if(pure)labels.push(['清一色',1]);if(allTrip)labels.push(['碰碰胡',2])}
+ const concealed=melds.filter(m=>m.type==='kong'&&m.concealed).length;
+ const hiddenTrip=maxConcealedTriplets(hand,4-melds.length);
+ const hidden=concealed+hiddenTrip;
+ if(hidden>=4)sweep.push('四暗刻');
+ else if(hidden>=3)labels.push(['三暗刻',4]);
+ return {labels,sweep,fan:labels.reduce((n,x)=>n+x[1],0),special};
+}
+function canAllTriplets(hand,meldCount){
+ let c=counts(hand),f=c.F||0;delete c.F;
+ const keys=Object.keys(c).filter(t=>c[t]>0);
+ for(const pair of [...keys,'F']){
+  let a={...c},left=f;
+  if(pair==='F'){if(left<2)continue;left-=2}
+  else {let n=Math.min(2,a[pair]||0);left-=2-n;a[pair]-=n;if(left<0)continue}
+  let groups=0,ok=true;
+  for(const t of keys){let n=a[t]||0;if(!n)continue;groups+=Math.ceil(n/3);left-=Math.ceil(n/3)*3-n;if(left<0){ok=false;break}}
+  if(ok&&left>=0&&(left%3===0)&&groups+left/3===4-meldCount)return true;
+ }
+ return false;
+}
+function maxConcealedTriplets(hand,need){
+ // 以真牌三張（或飛牌補成三張）計算手內暗刻上限。
+ const c=counts(hand),f=c.F||0;delete c.F;
+ let candidates=Object.keys(c).filter(t=>c[t]>0);
+ let best=0;
+ function walk(k,used,fly,trip){
+  if(k===candidates.length){best=Math.max(best,trip);return}
+  const n=c[candidates[k]];
+  walk(k+1,used,fly,trip);
+  const cost=Math.max(0,3-n);
+  if(cost<=fly&&used<need)walk(k+1,used+1,fly-cost,trip+1);
+ }
+ walk(0,0,f,0);return best;
+}
 function win(i,kind,from=null,winningTile=null){
  if(G.ended)return;
  let p=G.players[i];
- if(kind!=='sweep'&&kind!=='discard'&&!isWin(p.hand,p.melds.length))return;
- if(kind==='discard'&&!isWin([...p.hand,winningTile],p.melds.length))return;
+ if(kind!=='sweep'&&kind!=='discard'&&!playerWin(p.hand,p.melds))return;
+ if(kind==='discard'&&!playerWin([...p.hand,winningTile],p.melds))return;
  if(kind==='sweep'&&!sweepReason(p))return;
  playSound(kind==='sweep'?'sweep':'win');speakAction(kind==='sweep'?'掃台':kind==='self'?'自摸':'胡牌',i);G.ended=true;G.phase='ended';
- const fan=flowerFan(p), dealer=G.dealer, payments=[];
+ const fullHand=[...p.hand,...(winningTile?[winningTile]:[])];
+ const pattern=kind==='sweep'?{labels:[],sweep:[],fan:0,special:null}:patternInfo(fullHand,p.melds,i);
+ const patternSweep=pattern.sweep.length>0;
+ const isSweep=kind==='sweep'||patternSweep;
+ const fan=flowerFan(p,i)+pattern.fan, dealer=G.dealer, payments=[];
  for(let j=0;j<4;j++){
   if(j===i)continue;
   // 莊家贏：每位閒家付6；閒家贏：莊家付6，其餘閒家付3。
   // 掃台收取其他三家全部剩餘籌碼；普通胡牌金額為原本100倍。
-  const base=(i===dealer||j===dealer?600:300);   const amount=kind==='sweep'?Math.max(0,G.players[j].score):Math.min(Math.max(0,G.players[j].score),base+fan*100);   G.players[j].score-=amount;p.score+=amount;   payments.push(`${G.players[j].name} 付 ${amount}（${kind==='sweep'?'全部剩餘籌碼':`${base}＋花${fan*100}`}）`);
+  const base=(i===dealer||j===dealer?600:300);   const amount=isSweep?Math.max(0,G.players[j].score):Math.min(Math.max(0,G.players[j].score),base+fan*100);   G.players[j].score-=amount;p.score+=amount;   payments.push(`${G.players[j].name} 付 ${amount}（${isSweep?'全部剩餘籌碼':`${base}＋花${fan*100}`}）`);
  }
- let method=kind==='sweep'?'✨ '+sweepReason(p)+'掃台':kind==='self'?'自摸':'胡牌';
+ const special=kind==='sweep'?null:specialWinType([...p.hand,...(winningTile?[winningTile]:[])],p.melds);
+ let method=isSweep?'✨ '+(kind==='sweep'?sweepReason(p):pattern.sweep.join('、'))+'掃台':kind==='self'?'自摸':'胡牌';
+ if(special&&!isSweep)method+=`・${special}`;
  setNextDealer(i);
  log(`${p.name} ${method}！收取 ${payments.reduce((n,x)=>n+Number(x.match(/付 (\d+)/)[1]),0)} 籌碼`);
  render();
  let all=[...p.hand,...(winningTile?[winningTile]:[])];
  modal(`${p.name} ${method}！`,
- `<p><b>籌碼結算（每人起始5000）</b></p><p>${payments.join('<br>')}</p><p>贏家現有：🪙 ${p.score.toLocaleString()}</p><div class="tiles">${all.map(t=>face(t,true)).join('')}</div><p>花牌：${p.flowers.join('、')||'無'}（${fan}番）。</p><p>本局剩餘牌牆：${G.deck.length}張。</p>`,
+ `<p><b>籌碼結算（每人起始5000）</b></p><p>${payments.join('<br>')}</p><p>贏家現有：🪙 ${p.score.toLocaleString()}</p><div class="tiles">${all.map(t=>face(t,true)).join('')}</div><p>花牌：${p.flowers.join('、')||'無'}（花牌${flowerFan(p,i)}番；牌型${pattern.fan}番；合計${fan}番）。</p><p>番型：${pattern.labels.map(x=>x[0]+' '+x[1]+'番').join('、')||'無'}</p><p>本局剩餘牌牆：${G.deck.length}張。</p>`,
  [{label:'再玩一局',action:()=>newGame()}]);
 }
 function endDraw(){setNextDealer(null);G.ended=true;G.phase='ended';log('流局：牌牆已摸完。');render();modal('流局','牌牆摸完，無人胡牌。本局不計分。',[{label:'再玩一局',action:()=>newGame()}])}
