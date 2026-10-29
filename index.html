@@ -96,7 +96,7 @@ body{background:radial-gradient(circle at 15% 0%,#214941 0,transparent 45%),line
 .deal-track{height:8px;background:#052d26;border-radius:9px;overflow:hidden;margin:15px 0}.deal-fill{height:100%;width:0;background:#e6c579;transition:width .1s linear}
 .deal-skip{margin-top:10px;padding:10px 24px;border-radius:10px;border:0;background:#e8c77f;color:#123c32;font-size:17px;font-weight:bold}
 @media(prefers-reduced-motion:reduce){.deal-tile{animation:none}.deal-fill{transition:none}}
-</style></head><body><div id="dealAnimation" role="dialog" aria-modal="true" aria-label="開局抓牌動畫"><div class="deal-panel"><h2>🀄 洗牌・抓牌</h2><div id="dealSeat" class="deal-progress">準備抓牌…</div><div class="deal-tile-row" id="dealTiles"></div><div class="deal-track"><div class="deal-fill" id="dealFill"></div></div><div id="dealCounter" class="deal-progress">0 / 52 張</div><button class="deal-skip" id="dealSkip" type="button">跳過動畫 ▶</button></div></div><main class="app"><header class="top"><h1><span class="brand-icon">飛</span><span>飛雀麻將<small>FOUR PLAYER · FEI MAHJONG</small></span></h1><div><span class="chip" id="status">準備中</span> <label class="volume-control" for="volumeSlider">🔉 音量 <input id="volumeSlider" type="range" min="0" max="100" value="70" step="1" aria-label="遊戲音量"><output id="volumeValue">70%</output></label> <button class="btn secondary" id="soundButton" type="button" aria-pressed="true">🔊 音效開</button> <button class="btn secondary" id="newGameButton" type="button">重新開局</button></div></header><div id="previewNotice" style="padding:12px;margin:10px 0;background:#704d18;color:white;border-radius:9px;font-weight:700">目前是檔案預覽模式，遊戲程式尚未啟動。請將遊戲部署到網頁空間，使用 Safari 開啟正式 HTTPS 網址。</div><div id="errorBar" hidden role="alert" style="margin:8px 0;padding:10px;background:#8a2833;border-radius:9px"></div><div class="scoreline" id="scores"></div><section class="table"><div class="opponent"><div class="name" id="name2">AI 對家</div><div class="backs" id="back2"></div><div class="melds" id="meld2"></div></div><div class="middle"><div class="side"><div class="name" id="name3">AI 上家</div><div class="vertical" id="back3"></div><div class="melds" id="meld3"></div></div><div class="board-center"><div class="center-emblem"><div class="emblem-top">飛雀麻將</div><div class="emblem-mark">飛</div><div class="emblem-sub" id="wallLeft">牌牆準備中</div></div><div class="river" id="river"></div></div><div class="side"><div class="name" id="name1">AI 下家</div><div class="vertical" id="back1"></div><div class="melds" id="meld1"></div></div></div><div class="bottom"><div class="hand-title"><span>YOUR HAND</span><span id="handCount">14 張手牌</span></div><div class="name" id="name0" style="text-align:center">👤 你（東家）</div><div class="melds" id="meld0"></div><div class="hand" id="hand"></div></div></section><div class="control-panel"><div class="action-label">操作選單 <span>選擇手牌即可打出</span></div><div class="controls" id="controls"></div></div><div class="hint" id="hint"></div><details class="rules" style="margin-top:12px"><summary>🎙️ 四家固定角色配音／試聽（下家女聲加強）</summary><p id="voiceAvailability">正在讀取手機可用語音…</p><div id="voiceSettings" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px"></div><p style="font-size:12px;opacity:.8">預設播放隨遊戲附上的四組固定合成配音，不依賴手機語音。下家音檔經過升調及音色調整；這些是原創合成聲線，不是任何真人的聲音。音質屬實驗版；選單中的系統語音僅用於未預錄詞句的備援。</p></details><div class="log-title">牌局紀錄 <span>LIVE MATCH</span></div><div class="log" id="log" aria-live="polite"></div><details class="rules"><summary>遊戲規則與 V6.8 輪莊與音量控制、東風即時籌碼、5000籌碼與語音動作</summary>四人13張，含萬筒索、字牌、4張飛牌與12張花牌；飛可在手牌中代替任意普通牌。手上同時有4張飛立即掃台。不能假槓、不能把飛當花打掉；只能吃上家（本遊戲為你的左邊玩家，座位標示為AI上家）。可碰任一家，可用真牌明槓／暗槓／加槓；明槓及加槓由其他三家各付700，暗槓由其他三家各付1000。普通胡牌4面子＋1將眼，無最低番數。包含12張花牌（春夏秋冬、梅蘭菊竹、貓鼠雞蟲），摸花自動補花；每張花1番，集齊任一組四張立即掃台；支援十三么、大四喜、小四喜、大三元、小三元（飛牌可百搭）；尚未納入七對。飛牌不能參與副露，暫不支援贖飛。籌碼制：四家起始各5000籌碼，莊家胡牌、自摸或掃台可連莊；非莊家獲勝或流局則下家接莊。平胡時莊家若輸付600籌碼、閒家若輸各付300籌碼；莊家胡牌則其他三家各付600籌碼。每張花牌額外加100籌碼（每位付款者）；四飛或任一組四花掃台時其他三家交出全部剩餘籌碼。東風特殊籌碼：任何玩家打東風，其他三家各付該玩家100；碰東風，出牌者付碰牌者200、其餘兩家各付300；槓東風依明槓或暗槓計費，不重複收費。籌碼即時結算，所有玩家規則相同。這是遊戲籌碼，非現金。AI為基本牌效率策略，非專業強度。</details></main><div id="overlay" class="overlay"><div class="modal"><h2 id="modalTitle"></h2><div id="modalText"></div><div class="actions" id="modalActions"></div></div></div><script>
+</style></head><body><div id="dealAnimation" role="dialog" aria-modal="true" aria-label="開局抓牌動畫"><div class="deal-panel"><h2>🀄 洗牌・抓牌</h2><div id="dealSeat" class="deal-progress">準備抓牌…</div><div class="deal-tile-row" id="dealTiles"></div><div class="deal-track"><div class="deal-fill" id="dealFill"></div></div><div id="dealCounter" class="deal-progress">0 / 52 張</div><button class="deal-skip" id="dealSkip" type="button">跳過動畫 ▶</button></div></div><main class="app"><header class="top"><h1><span class="brand-icon">飛</span><span>飛雀麻將<small>FOUR PLAYER · FEI MAHJONG</small></span></h1><div><span class="chip" id="status">準備中</span> <label class="volume-control" for="volumeSlider">🔉 音量 <input id="volumeSlider" type="range" min="0" max="100" value="70" step="1" aria-label="遊戲音量"><output id="volumeValue">70%</output></label> <button class="btn secondary" id="soundButton" type="button" aria-pressed="true">🔊 音效開</button> <button class="btn secondary" id="newGameButton" type="button">重新開局</button></div></header><div id="previewNotice" style="padding:12px;margin:10px 0;background:#704d18;color:white;border-radius:9px;font-weight:700">目前是檔案預覽模式，遊戲程式尚未啟動。請將遊戲部署到網頁空間，使用 Safari 開啟正式 HTTPS 網址。</div><div id="errorBar" hidden role="alert" style="margin:8px 0;padding:10px;background:#8a2833;border-radius:9px"></div><div class="scoreline" id="scores"></div><section class="table"><div class="opponent"><div class="name" id="name2">AI 對家</div><div class="backs" id="back2"></div><div class="melds" id="meld2"></div></div><div class="middle"><div class="side"><div class="name" id="name3">AI 上家</div><div class="vertical" id="back3"></div><div class="melds" id="meld3"></div></div><div class="board-center"><div class="center-emblem"><div class="emblem-top">飛雀麻將</div><div class="emblem-mark">飛</div><div class="emblem-sub" id="wallLeft">牌牆準備中</div></div><div class="river" id="river"></div></div><div class="side"><div class="name" id="name1">AI 下家</div><div class="vertical" id="back1"></div><div class="melds" id="meld1"></div></div></div><div class="bottom"><div class="hand-title"><span>YOUR HAND</span><span id="handCount">14 張手牌</span></div><div class="name" id="name0" style="text-align:center">👤 你（東家）</div><div class="melds" id="meld0"></div><div class="hand" id="hand"></div></div></section><div class="control-panel"><div class="action-label">操作選單 <span>選擇手牌即可打出</span></div><div class="controls" id="controls"></div></div><div class="hint" id="hint"></div><details class="rules" style="margin-top:12px"><summary>🎙️ 四家原本報牌聲／各自設定與試聽</summary><p id="voiceAvailability">正在讀取手機可用語音…</p><div id="voiceSettings" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px"></div><p style="font-size:12px;opacity:.8">恢復原本手機中文朗讀報牌音效，四家分別設定不同語音、音高及語速；如手機只提供一種中文聲線，將以音高語速區分。可以切換回固定音檔。</p></details><div class="log-title">牌局紀錄 <span>LIVE MATCH</span></div><div class="log" id="log" aria-live="polite"></div><details class="rules"><summary>遊戲規則與 V6.9 四家原本報牌聲、輪莊與音量控制、東風即時籌碼、5000籌碼與語音動作</summary>四人13張，含萬筒索、字牌、4張飛牌與12張花牌；飛可在手牌中代替任意普通牌。手上同時有4張飛立即掃台。不能假槓、不能把飛當花打掉；只能吃上家（本遊戲為你的左邊玩家，座位標示為AI上家）。可碰任一家，可用真牌明槓／暗槓／加槓；明槓及加槓由其他三家各付700，暗槓由其他三家各付1000。普通胡牌4面子＋1將眼，無最低番數。包含12張花牌（春夏秋冬、梅蘭菊竹、貓鼠雞蟲），摸花自動補花；每張花1番，集齊任一組四張立即掃台；支援十三么、大四喜、小四喜、大三元、小三元（飛牌可百搭）；尚未納入七對。飛牌不能參與副露，暫不支援贖飛。籌碼制：四家起始各5000籌碼，莊家胡牌、自摸或掃台可連莊；非莊家獲勝或流局則下家接莊。平胡時莊家若輸付600籌碼、閒家若輸各付300籌碼；莊家胡牌則其他三家各付600籌碼。每張花牌額外加100籌碼（每位付款者）；四飛或任一組四花掃台時其他三家交出全部剩餘籌碼。東風特殊籌碼：任何玩家打東風，其他三家各付該玩家100；碰東風，出牌者付碰牌者200、其餘兩家各付300；槓東風依明槓或暗槓計費，不重複收費。籌碼即時結算，所有玩家規則相同。這是遊戲籌碼，非現金。AI為基本牌效率策略，非專業強度。</details></main><div id="overlay" class="overlay"><div class="modal"><h2 id="modalTitle"></h2><div id="modalText"></div><div class="actions" id="modalActions"></div></div></div><script>
 'use strict';
 const types=[];for(let s of ['m','p','s'])for(let n=1;n<=9;n++)types.push(s+n);for(let z of ['E','S','W','N','R','G','B'])types.push(z);types.push('F');
 const FLOWERS=['春','夏','秋','冬','梅','蘭','菊','竹','貓','鼠','雞','蟲'];
@@ -168,6 +168,8 @@ const TABLE_VOICES=[
  {name:'上家｜厚實有力男聲',pitch:0.80,rate:1.13}
 ];
 const voiceSelections=[-1,-1,-1,-1];
+let voiceMode='original';try{voiceMode=localStorage.getItem('feiVoiceMode')||'original'}catch(e){}
+
 let cachedVoices=[];
 function getChineseVoices(){
  if(!('speechSynthesis' in window))return [];
@@ -196,7 +198,10 @@ function tableVoice(seat){
  if(chosen>=0&&voices[chosen])return voices[chosen];
  const preferred=voices.filter(v=>/^zh[-_]((TW)|(HK)|(MO))/i.test(v.lang));
  const pool=preferred.length?preferred:voices;
- return pool.length?pool[seat%pool.length]:null;
+ // Prefer different native voice identities for each seat when available.
+ if(!pool.length)return null;
+ const unique=[...new Map(pool.map(v=>[v.name+'|'+v.lang,v])).values()];
+ return unique[seat%unique.length];
 }
 let activeCharacterAudio=null;
 const FIXED_AUDIO_KEYS=new Set(["m1", "m2", "m3", "m4", "m5", "m6", "m7", "m8", "m9", "p1", "p2", "p3", "p4", "p5", "p6", "p7", "p8", "p9", "s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9", "E", "S", "W", "N", "R", "G", "B", "F", "吃", "碰", "槓", "胡牌", "自摸", "掃台"]);
@@ -205,7 +210,7 @@ function speakTable(text,seat=0){
  if(!soundOn)return;
  if(activeCharacterAudio){activeCharacterAudio.pause();activeCharacterAudio.currentTime=0;activeCharacterAudio=null}
  const key=FIXED_SPOKEN_TO_KEY[text]||text;
- if(FIXED_AUDIO_KEYS.has(key)){
+ if(voiceMode==='fixed'&&FIXED_AUDIO_KEYS.has(key)){
   const audio=new Audio('voices/'+seat+'_'+encodeURIComponent(key)+'.mp3');
   activeCharacterAudio=audio;audio.volume=masterVolume;
   audio.play().catch(()=>fallbackSpeech(text,seat));
@@ -215,19 +220,25 @@ function speakTable(text,seat=0){
 }
 function fallbackSpeech(text,seat=0){
  if(!('speechSynthesis' in window))return;
- try{const u=new SpeechSynthesisUtterance(text);const p=TABLE_VOICES[seat]||TABLE_VOICES[0];u.lang='zh-TW';u.volume=masterVolume;u.pitch=p.pitch;u.rate=p.rate;const v=tableVoice(seat);if(v){u.voice=v;u.lang=v.lang}speechSynthesis.cancel();speechSynthesis.speak(u)}catch(e){}
+ try{if(activeCharacterAudio){activeCharacterAudio.pause();activeCharacterAudio=null}const u=new SpeechSynthesisUtterance(text);const p=TABLE_VOICES[seat]||TABLE_VOICES[0];u.lang='zh-TW';u.volume=masterVolume;u.pitch=p.pitch;u.rate=p.rate;const v=tableVoice(seat);if(v){u.voice=v;u.lang=v.lang}speechSynthesis.cancel();speechSynthesis.speak(u)}catch(e){}
 }
 
 // Build per-seat voice selectors and test buttons.
 (function(){
  const host=document.getElementById('voiceSettings');if(!host)return;
+ const modeRow=document.createElement('div');modeRow.style.cssText='grid-column:1/-1;display:flex;align-items:center;gap:8px;flex-wrap:wrap';
+ const modeLabel=document.createElement('label');modeLabel.textContent='報牌音效：';modeLabel.htmlFor='voiceModeSelect';
+ const modeSelect=document.createElement('select');modeSelect.id='voiceModeSelect';modeSelect.style.cssText='padding:9px;border-radius:8px;background:white;color:#172b20';
+ [['original','原本的手機報牌聲（四家區分）'],['fixed','固定角色音檔（舊版）']].forEach(([v,t])=>{const opt=document.createElement('option');opt.value=v;opt.textContent=t;modeSelect.appendChild(opt)});
+ modeSelect.value=voiceMode;modeSelect.addEventListener('change',()=>{voiceMode=modeSelect.value;try{localStorage.setItem('feiVoiceMode',voiceMode)}catch(e){};if(activeCharacterAudio){activeCharacterAudio.pause();activeCharacterAudio=null}if('speechSynthesis' in window)speechSynthesis.cancel()});
+ modeRow.append(modeLabel,modeSelect);host.appendChild(modeRow);
  const names=['你（機靈男聲）','AI 下家（較高音女聲）','AI 對家（低沉男聲）','AI 上家（厚實男聲）'];
  names.forEach((name,seat)=>{
   const wrap=document.createElement('div');wrap.style.cssText='display:flex;flex-direction:column;gap:6px';
   const lab=document.createElement('label');lab.textContent=name;lab.htmlFor='voiceSelect'+seat;
   const sel=document.createElement('select');sel.id='voiceSelect'+seat;sel.style.cssText='width:100%;padding:8px;border-radius:7px;background:#fff;color:#172b20';
   sel.addEventListener('change',()=>{voiceSelections[seat]=Number(sel.value);try{localStorage.setItem('feiVoiceSeat'+seat,sel.value)}catch(e){}});
-  const btn=document.createElement('button');btn.type='button';btn.className='btn secondary';btn.textContent='▶ 試聽固定角色配音';
+  const btn=document.createElement('button');btn.type='button';btn.className='btn secondary';btn.textContent='▶ 試聽這一家的聲音';
   btn.addEventListener('click',()=>{audioReady();speakTable('六筒',seat)});
   wrap.append(lab,sel,btn);host.appendChild(wrap);
  });
