@@ -112,7 +112,7 @@ function dot(x,y,r,red=false){
  let petals='';for(let k=0;k<12;k++){let a=k*Math.PI/6;petals+=`<ellipse cx="${(x+Math.cos(a)*r*.56).toFixed(1)}" cy="${(y+Math.sin(a)*r*.56).toFixed(1)}" rx="${(r*.18).toFixed(1)}" ry="${(r*.28).toFixed(1)}" transform="rotate(${k*30+90} ${(x+Math.cos(a)*r*.56).toFixed(1)} ${(y+Math.sin(a)*r*.56).toFixed(1)})" fill="${ink}" opacity=".83"/>`}
  return `<g><circle cx="${x}" cy="${y}" r="${r}" fill="#fffaf0" stroke="${ink}" stroke-width="2.4"/><circle cx="${x}" cy="${y}" r="${r*.78}" fill="none" stroke="${ink}" stroke-width="1.4"/>${petals}<circle cx="${x}" cy="${y}" r="${r*.28}" fill="${red?'#d64d70':'#537c78'}" stroke="#f3e4cb" stroke-width="1"/></g>`;
 }
-function bamboo(x,y,scale=1,red=false){const ink=red?'#b9354c':'#246a50';return `<g transform="translate(${x} ${y}) scale(${scale})"><path d="M-4 -14 Q0 -17 4 -14 L4 -4 Q0 -1 -4 -4Z M-4 -1 Q0 -4 4 -1 L4 9 Q0 12 -4 9Z M-4 12 Q0 9 4 12 L3 17 H-3Z" fill="${ink}" stroke="#193d37" stroke-width=".9"/><path d="M-2 -11 L2 -11 M-2 3 L2 3 M-2 14 L2 14" stroke="#d5c58d" stroke-width="1"/></g>`}
+function bamboo(x,y,scale=1,red=false,black=false){const ink=black?'#161a1c':red?'#b9354c':'#246a50';return `<g transform="translate(${x} ${y}) scale(${scale})"><path d="M-4 -14 Q0 -17 4 -14 L4 -4 Q0 -1 -4 -4Z M-4 -1 Q0 -4 4 -1 L4 9 Q0 12 -4 9Z M-4 12 Q0 9 4 12 L3 17 H-3Z" fill="${ink}" stroke="${black?'#050708':'#193d37'}" stroke-width=".9"/><path d="M-2 -11 L2 -11 M-2 3 L2 3 M-2 14 L2 14" stroke="#d5c58d" stroke-width="1"/></g>`}
 function artwork(t){
  const n=Number(t[1]),s=t[0];
  if(s==='m')return `<span class="symbol wan-face"><span class="num">${'一二三四五六七八九'[n-1]}</span><span class="wanchar">萬</span></span>`;
@@ -126,7 +126,7 @@ function artwork(t){
  }else{
   if(n===1){items=['<path d="M50 10 Q22 29 32 57 Q14 75 50 94 Q86 75 68 57 Q78 29 50 10Z" fill="#276d4e" stroke="#173e36" stroke-width="3"/>','<path d="M50 16 Q69 43 50 82 Q31 43 50 16Z" fill="#b73c46" stroke="#dfb97a" stroke-width="2"/>','<circle cx="50" cy="46" r="5" fill="#f8e9b0"/>'];}
   else if(n===7){items=[`<g transform="translate(50 22) rotate(-28)">${bamboo(0,0,1.1,true)}</g>`];for(let y of [52,80])for(let x of [25,50,75])items.push(bamboo(x,y,.85));}
-  else items=pos.map(([x,y],i)=>bamboo(x,y,n>=8?.72:.9,n===5&&i===2));
+  else items=pos.map(([x,y],i)=>bamboo(x,y,n>=8?.72:.9,n===5&&i===2,n===8));
  }
  return `<svg class="mahjong-art" viewBox="0 0 100 100" aria-hidden="true">${items.join('')}</svg>`;
 }
@@ -422,7 +422,7 @@ function responsesNoHuman(i,t){let opts=responseOptions(i,t).filter(o=>o.seat!==
 function claim(o,from,t){playSound(o.type==='kong'?'kong':'claim');speakAction(o.type==='chow'?'吃':o.type==='pong'?'碰':'槓',o.seat);let p=G.players[o.seat],river=G.players[from].river;river.pop();let req=o.type==='chow'?o.req:Array(o.type==='kong'?3:2).fill(t);for(let q of req)remove(p.hand,q,1);p.melds.push({type:o.type,tiles:[...req,t].sort((a,b)=>sortKey(a)-sortKey(b))});if(t==='E'&&o.type==='pong')eastPong(o.seat,from);if(o.type==='kong')normalKong(o.seat,t,false);G.turn=o.seat;G.phase=o.type==='kong'?'draw':'discard';log(`${p.name} ${o.type==='chow'?'吃':o.type==='pong'?'碰':'槓'} ${label(t)}`);render();if(o.type==='kong'){draw(o.seat)}else if(o.seat!==0)queueAI()}
 function next(i){G.turn=(i+1)%4;G.phase='draw';render();if(G.turn!==0)queueAI()}
 function draw(i){if(dealingNow)return;playSound('draw');if(G.ended||G.turn!==i||G.phase!=='draw')return;if(!G.deck.length){endDraw();return}let result=drawReplacement(i),p=G.players[i];if(sweepReason(p)){win(i,'sweep');return}if(result.empty){endDraw();return}let t=result.tile;G.phase='discard';log(`${p.name} 摸牌${i===0?'：'+label(t):''}`);if(i!==0&&playerWin(p.hand,p.melds)){win(i,'self');return}render();if(i!==0)queueAI()}
-let aiTimer=null;function queueAI(){clearTimeout(aiTimer);aiTimer=setTimeout(aiStep,1200)}
+let aiTimer=null;function queueAI(){clearTimeout(aiTimer);aiTimer=setTimeout(aiStep,5000)}
 function aiStep(){if(!G||G.ended||modalBlocked||G.turn===0)return;let i=G.turn,p=G.players[i];if(G.phase==='draw'){draw(i);return}if(G.phase!=='discard')return;if(playerWin(p.hand,p.melds)){win(i,'self');return}let ks=canKong(p);if(ks.length&&Math.random()<.35){doKong(i,ks[0]);return}let choices=p.hand.filter(t=>t!=='F');let scored=choices.map(t=>({t,score:handValue(p.hand.filter((x,k)=>k!==p.hand.indexOf(t)),p.melds.length)})).sort((a,b)=>b.score-a.score||Math.random()-.5);discard(i,scored[0].t)}
 function handValue(h,m){let c=counts(h),score=0;for(let t of h){if(t==='F'){score+=8;continue}let n=c[t];score+=n>=2?3:0; if(t.length===2){let suit=t[0],v=+t[1];for(let d of [-2,-1,1,2]){let q=suit+(v+d);if(c[q])score+=Math.abs(d)===1?1.6:.65}}}return score+Math.random()*.8}
 function chooseKong(ks){modal('選擇槓牌','只能使用真牌槓，飛牌不可假槓。',[...ks.map(k=>({label:`${k.type==='concealed'?'暗槓':'加槓'} ${label(k.t)}`,action:()=>{closeModal();doKong(0,k)}})),{label:'取消',secondary:true,action:closeModal}])}
